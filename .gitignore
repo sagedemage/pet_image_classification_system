@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+venv/
+
+# PyTorch
+runs/
+trained_models/*.pt
+dataset/
+
+# PyCharm Python IDE
+.idea/
+
+# OpenDocument Spreadsheet files used with LibreOffice and OpenOffice
+*.ods
+
+# Media files
+*.xcf
+
+# Cache files
+*.~*
