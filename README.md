@@ -23,7 +23,7 @@ python3 train_model.py
 ```
 
 ### 2. Pick Pet Images
-2.1 Use the GUI program to pick five pet images:
+2.1 Use the GUI program to pick four pet images:
 ```
 python3 gui_pick_pet_images.py 
 ```
