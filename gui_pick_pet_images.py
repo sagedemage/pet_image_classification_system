@@ -11,7 +11,7 @@ WIDTH = 1020
 HEIGHT = 645
 
 window = Tk()
-window.title("Image Picker")
+window.title("Pet Image Picker")
 window.geometry(f"{WIDTH}x{HEIGHT}")
 
 images = []
