@@ -80,16 +80,23 @@ def pick_image():
 
     picked_image=images[counter]
     image_path=image_paths[counter]
-    if len(picked_image_paths) < 5 and picked_image not in picked_image_paths:
-        picked_image_paths.append(image_path)
-        print(picked_image_paths)
+    if image_path not in picked_image_paths:
+        if len(picked_image_paths) < 5:
+            picked_image_paths.append(image_path)
+            print("Picked pet image.")
+        else:
+            print("Picked 5 pet images!")
+    else:
+        print("This pet image has already been picked!")
 
 def remove_image():
     global counter
 
     if len(picked_image_paths) > 0:
         picked_image_paths.pop()
-        print(picked_image_paths)
+        print("Removed pet image.")
+    else:
+        print("There are no picked images!")
 
 def save_images():
     if len(picked_image_paths) == 5:
@@ -102,7 +109,7 @@ def save_images():
             new_name = f"pet{i + 1}.jpg"
             new_path = f"{dest_path}/{new_name}"
             copied_file_path.rename(new_path)
-        print("Saved pet images!")
+        print("Saved pet images.")
     else:
         print("Pick 5 images!")
 
