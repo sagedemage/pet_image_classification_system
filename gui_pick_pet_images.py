@@ -80,11 +80,11 @@ var1 = IntVar()
 def pick_image():
     picked_image_path = image_paths[counter]
     if picked_image_path not in picked_image_paths:
-        if len(picked_image_paths) < 5:
+        if len(picked_image_paths) < 4:
             picked_image_paths.append(picked_image_path)
             print("Picked pet image.")
         else:
-            print("Picked 5 pet images!")
+            print("Picked 4 pet images!")
     else:
         print("This pet image has already been picked!")
 
@@ -98,7 +98,7 @@ def remove_image():
 
 
 def save_images():
-    if len(picked_image_paths) == 5:
+    if len(picked_image_paths) == 4:
         dest_path_s = "picked_images/pets"
         dest_path = Path(dest_path_s)
         for i in range(len(picked_image_paths)):
@@ -110,7 +110,7 @@ def save_images():
             copied_file_path.rename(new_path)
         print("Saved pet images.")
     else:
-        print("Pick 5 images!")
+        print("Pick 4 pet images!")
 
 
 pick_button = Button(
