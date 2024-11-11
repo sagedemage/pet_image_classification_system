@@ -1,10 +1,9 @@
 """Pet Image Picker GUI Program"""
 
-from tkinter import Tk, Label, Button, Checkbutton, IntVar
+from tkinter import Tk, Label, Button, IntVar
 from PIL import ImageTk, Image
 import glob
 import shutil
-import os
 from pathlib import Path
 
 WIDTH = 1020
@@ -53,7 +52,9 @@ def previous_image():
 
 
 imageLabel = Label(window, image=images[0])
-infoLabel = Label(window, text=f"Image 1 of {len(images)}", font="Helvetica, 20")
+infoLabel = Label(
+    window, text=f"Image 1 of {len(images)}", font="Helvetica, 20"
+)
 next_button = Button(
     window,
     text="Next",
@@ -75,28 +76,26 @@ previous_button = Button(
 
 var1 = IntVar()
 
-def pick_image():
-    global counter
 
-    picked_image=images[counter]
-    image_path=image_paths[counter]
-    if image_path not in picked_image_paths:
+def pick_image():
+    picked_image_path = image_paths[counter]
+    if picked_image_path not in picked_image_paths:
         if len(picked_image_paths) < 5:
-            picked_image_paths.append(image_path)
+            picked_image_paths.append(picked_image_path)
             print("Picked pet image.")
         else:
             print("Picked 5 pet images!")
     else:
         print("This pet image has already been picked!")
 
-def remove_image():
-    global counter
 
+def remove_image():
     if len(picked_image_paths) > 0:
         picked_image_paths.pop()
         print("Removed pet image.")
     else:
         print("There are no picked images!")
+
 
 def save_images():
     if len(picked_image_paths) == 5:
