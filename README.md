@@ -21,8 +21,14 @@ tensorboard --logdir=runs
 python3 train_model.py
 ```
 
-### 2. Run Program
-2.1 Run the program with the file path of the saved model:
+### 2. Pick Pet Images
+2.1 Use the GUI program to pick five pet images:
+```
+python3 gui_pick_pet_images.py 
+```
+
+### 3. Run Program
+3.1 Run the program with the file path of the saved model:
 ```
 python3 main.py trained_models/model_20241110_144454_22.pt
 ```

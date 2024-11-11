@@ -1,14 +1,21 @@
 """Pet Image Picker GUI Program"""
 
-from tkinter import Tk, Label, Button
+from tkinter import Tk, Label, Button, Checkbutton, IntVar
 from PIL import ImageTk, Image
 import glob
+import shutil
+import os
+from pathlib import Path
 
-root = Tk()
-root.title("Image Picker")
-root.geometry("680x430")
+WIDTH = 1020
+HEIGHT = 645
+
+window = Tk()
+window.title("Image Picker")
+window.geometry(f"{WIDTH}x{HEIGHT}")
 
 images = []
+picked_image_paths = []
 
 image_paths = glob.glob("dataset/oxford-iiit-pet/images/*.jpg", recursive=False)
 
@@ -45,25 +52,89 @@ def previous_image():
     )
 
 
-imageLabel = Label(root, image=images[0])
-infoLabel = Label(root, text=f"Image 1 of {len(images)}", font="Helvetica, 20")
+imageLabel = Label(window, image=images[0])
+infoLabel = Label(window, text=f"Image 1 of {len(images)}", font="Helvetica, 20")
 next_button = Button(
-    root,
+    window,
     text="Next",
     width=20,
     height=2,
-    bg="purple",
+    bg="gray",
     fg="white",
     command=next_image,
 )
 previous_button = Button(
-    root,
+    window,
     text="Previous",
     width=20,
     height=2,
-    bg="purple",
+    bg="gray",
     fg="white",
     command=previous_image,
+)
+
+var1 = IntVar()
+
+def pick_image():
+    global counter
+
+    picked_image=images[counter]
+    image_path=image_paths[counter]
+    if len(picked_image_paths) < 5 and picked_image not in picked_image_paths:
+        picked_image_paths.append(image_path)
+        print(picked_image_paths)
+
+def remove_image():
+    global counter
+
+    if len(picked_image_paths) > 0:
+        picked_image_paths.pop()
+        print(picked_image_paths)
+
+def save_images():
+    if len(picked_image_paths) == 5:
+        dest_path_s = "picked_images/pets"
+        dest_path = Path(dest_path_s)
+        for i in range(len(picked_image_paths)):
+            image_path_s = picked_image_paths[i]
+            copied_file_path_s = shutil.copy(image_path_s, dest_path_s)
+            copied_file_path = Path(copied_file_path_s)
+            new_name = f"pet{i + 1}.jpg"
+            new_path = f"{dest_path}/{new_name}"
+            copied_file_path.rename(new_path)
+        print("Saved pet images!")
+    else:
+        print("Pick 5 images!")
+
+
+pick_button = Button(
+    window,
+    text="Pick this image",
+    width=20,
+    height=2,
+    bg="blue",
+    fg="white",
+    command=pick_image,
+)
+
+remove_button = Button(
+    window,
+    text="Remove this image",
+    width=20,
+    height=2,
+    bg="red",
+    fg="white",
+    command=remove_image,
+)
+
+save_button = Button(
+    window,
+    text="Save the images",
+    width=20,
+    height=2,
+    bg="green",
+    fg="white",
+    command=save_images,
 )
 
 # display components
@@ -71,4 +142,7 @@ imageLabel.pack()
 infoLabel.pack()
 previous_button.pack(side="left", pady=3)
 next_button.pack(side="right", pady=3)
-root.mainloop()
+remove_button.pack(side="bottom", pady=3)
+pick_button.pack(side="bottom", pady=3)
+save_button.pack(side="bottom", pady=3)
+window.mainloop()
