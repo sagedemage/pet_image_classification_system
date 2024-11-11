@@ -2,6 +2,7 @@
 Pet image classification system written in Python with PyTorch.
 
 ![Pet Image Classification System](./screenshots/pet_image_classification_system.webp)
+![Pick Pet Images GUI Program](./screenshots/pick_pet_images_gui_program.webp)
 
 ## Source of the Oxford-IIIT Pet Dataset
 - [The Oxford-IIIT Pet Dataset](https://www.robots.ox.ac.uk/~vgg/data/pets/)
@@ -21,8 +22,14 @@ tensorboard --logdir=runs
 python3 train_model.py
 ```
 
-### 2. Run Program
-2.1 Run the program with the file path of the saved model:
+### 2. Pick Pet Images
+2.1 Use the GUI program to pick four pet images:
+```
+python3 gui_pick_pet_images.py 
+```
+
+### 3. Run Program
+3.1 Run the program with the file path of the saved model:
 ```
 python3 main.py trained_models/model_20241110_144454_22.pt
 ```
@@ -57,3 +64,4 @@ python3 main.py trained_models/model_20241110_144454_22.pt
 - [How to split data into 3 sets (train, validation and test)? - StackOverflow](https://stackoverflow.com/questions/38250710/how-to-split-data-into-3-sets-train-validation-and-test)
 - [Oxford IIIT Pets Segmentation using PyTorch - GitHub](https://github.com/dhruvbird/ml-notebooks/blob/main/pets_segmentation/oxford-iiit-pets-segmentation-using-pytorch-segnet-and-depth-wise-separable-convs.ipynb)
 - [RuntimeError: stack expects each tensor to be equal size, but got [3, 224, 224] at entry 0 and [3, 224, 336] at entry 3 - PyTorch Discuss](https://discuss.pytorch.org/t/runtimeerror-stack-expects-each-tensor-to-be-equal-size-but-got-3-224-224-at-entry-0-and-3-224-336-at-entry-3/87211/25)
+- [Make a Simple Image Gallery Using Tkinter and Python - Medium](https://dev.to/mooict/make-a-simple-image-gallery-using-tkinter-and-python-2p4j)

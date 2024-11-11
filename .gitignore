@@ -6,6 +6,7 @@ venv/
 runs/
 trained_models/*.pt
 dataset/
+picked_images/pets/*.jpg
 
 # PyCharm Python IDE
 .idea/
