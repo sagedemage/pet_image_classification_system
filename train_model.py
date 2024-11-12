@@ -49,6 +49,8 @@ def train_one_epoch(
 
         labels = labels.to(device)
         labels = labels.type(torch.float32)
+        x = torch.ones(4, 4).to(device)
+        labels = labels * x
 
         # Make predictions for this batch
         outputs = model(inputs)
@@ -170,6 +172,8 @@ def main():
 
                 vlabels = vlabels.to(device)
                 vlabels = vlabels.type(torch.float32)
+                x = torch.ones(4, 4).to(device)
+                vlabels = vlabels * x
 
                 voutputs = model(vinputs)
                 vloss = loss_fn(voutputs, vlabels)
