@@ -79,9 +79,16 @@ def main():
     rows = df_pet_labels_data.loc[df_pet_labels_data["ID"] == index]
     row = rows.iloc[0]
     label = row["Label"]
+    cat_or_dog = row["Cat_Dog"]
 
-    print(f"The breed of the pet is: {label}")
-
+    if cat_or_dog == 0:
+        # Cat
+        print("The pet is a cat")
+        print(f"The breed of the cat is: {label}")
+    elif cat_or_dog == 1:
+        # Dog
+        print("The pet is a dog")
+        print(f"The breed of the dog is: {label}")
 
 if __name__ == "__main__":
     main()
