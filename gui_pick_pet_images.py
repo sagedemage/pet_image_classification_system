@@ -100,6 +100,7 @@ def remove_image():
 def save_images():
     if len(picked_image_paths) == 4:
         dest_path_s = "picked_images/pets"
+        file = open("picked_images/pets/picked_pet_images.txt", "a", encoding="utf-8")
         for i in range(len(picked_image_paths)):
             image_path_s = picked_image_paths[i]
             copied_file_path_s = shutil.copy(image_path_s, dest_path_s)
@@ -107,7 +108,9 @@ def save_images():
             new_name = f"pet{i + 1}.jpg"
             new_path = f"{dest_path_s}/{new_name}"
             copied_file_path.rename(new_path)
+            file.write(image_path_s + "\n")
         print("Saved pet images.")
+        file.close()
     else:
         print("Pick 4 pet images!")
 
