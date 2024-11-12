@@ -82,7 +82,11 @@ def main():
         split="trainval",
         download=True,
         transform=transforms.Compose(
-            [transforms.Resize(img_size), transforms.ToTensor()]
+            [
+                transforms.ToTensor(),
+                transforms.Resize(img_size),
+                transforms.Normalize((0.5,), (0.5,)),
+            ]
         ),
     )
 
