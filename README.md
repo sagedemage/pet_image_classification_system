@@ -65,3 +65,4 @@ python3 main.py trained_models/model_20241110_144454_22.pt
 - [Oxford IIIT Pets Segmentation using PyTorch - GitHub](https://github.com/dhruvbird/ml-notebooks/blob/main/pets_segmentation/oxford-iiit-pets-segmentation-using-pytorch-segnet-and-depth-wise-separable-convs.ipynb)
 - [RuntimeError: stack expects each tensor to be equal size, but got [3, 224, 224] at entry 0 and [3, 224, 336] at entry 3 - PyTorch Discuss](https://discuss.pytorch.org/t/runtimeerror-stack-expects-each-tensor-to-be-equal-size-but-got-3-224-224-at-entry-0-and-3-224-336-at-entry-3/87211/25)
 - [Make a Simple Image Gallery Using Tkinter and Python - Medium](https://dev.to/mooict/make-a-simple-image-gallery-using-tkinter-and-python-2p4j)
+- [Loss Functions in PyTorch Models - Machine Learning Mastery](https://machinelearningmastery.com/loss-functions-in-pytorch-models/)
