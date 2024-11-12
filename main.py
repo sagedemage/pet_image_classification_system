@@ -70,14 +70,15 @@ def main():
     batch_pred = rand_nums.argmax()
     rand_nums = np.random.rand(BATCH_SIZE)
     pos_pred = rand_nums.argmax()
-    pred_input = round(float(pred_probab[batch_pred][pos_pred]), 0)
+    pred_input = round(float(pred_probab[batch_pred][pos_pred])*10000*2, 0)
     index = int(pred_input)
 
+    print(pred_probab)
+    print(index)
     file = open(annotations_text, "r", encoding="utf-8")
     lines = file.readlines()
 
     line = lines[index]
-    line = line.strip("Label: ")
     items = line.split(" ")
     label = items[0]
 
