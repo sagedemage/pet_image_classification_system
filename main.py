@@ -7,17 +7,20 @@ from torch import nn
 from ml.model import PetClassifier
 import numpy as np
 from torchvision import datasets, transforms
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
+import pandas as pd
 
 from config import BATCH_SIZE
 
 annotations_text = "dataset/oxford-iiit-pet/annotations/trainval.txt"
-
+OXFORD_III_PET_LABELS_CSV = "labels/oxford-iiit-pet_labels.csv"
 
 def load_training(root_path: str, img_size: tuple[int, int]):
     transform = transforms.Compose(
-        [transforms.Resize(img_size), transforms.ToTensor()]
+        [
+            transforms.ToTensor(),
+            transforms.Resize(img_size),
+            transforms.Normalize((0.5,), (0.5,)),
+        ]
     )
     data = datasets.ImageFolder(root=root_path, transform=transform)
     data_loader = DataLoader(data, batch_size=BATCH_SIZE, shuffle=True)
@@ -68,29 +71,15 @@ def main():
     pred_probab = nn.ReLU()(logits)
     rand_nums = np.random.rand(BATCH_SIZE)
     batch_pred = rand_nums.argmax()
-    rand_nums = np.random.rand(BATCH_SIZE)
-    pos_pred = rand_nums.argmax()
-    pred_input = round(float(pred_probab[batch_pred][pos_pred])*10000*2, 0)
+    pred_input = round(float(pred_probab[batch_pred][0])*100, 0)
     index = int(pred_input)
 
-    print(pred_probab)
-    print(index)
-    file = open(annotations_text, "r", encoding="utf-8")
-    lines = file.readlines()
-
-    line = lines[index]
-    items = line.split(" ")
-    label = items[0]
+    df_pet_labels_data = pd.read_csv(OXFORD_III_PET_LABELS_CSV)
+    rows = df_pet_labels_data.loc[df_pet_labels_data["ID"] == index]
+    row = rows.iloc[0]
+    label = row["Label"]
 
     print(f"The breed of the pet is: {label}")
-
-    img = mpimg.imread(f"dataset/oxford-iiit-pet/images/{label}.jpg")
-    plt.subplots(num="Image of the Predicted Breed of the Pet")
-    plt.imshow(img)
-    plt.title(f"{label}")
-    plt.show()
-
-    file.close()
 
 
 if __name__ == "__main__":
