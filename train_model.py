@@ -4,7 +4,7 @@ import torch
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 from torch.optim import SGD
-from torch.nn import L1Loss
+from torch.nn import CrossEntropyLoss
 from torchvision import datasets
 import torchvision.transforms as transforms
 
@@ -32,7 +32,7 @@ def train_one_epoch(
     optimizer: SGD,
     device: str,
     model: PetClassifier,
-    loss_fn: L1Loss,
+    loss_fn: CrossEntropyLoss,
 ):
     running_loss = 0.0
     last_loss = 0.0
@@ -113,7 +113,7 @@ def main():
     model = PetClassifier().to(device)
 
     # Loss Function
-    loss_fn = torch.nn.L1Loss()
+    loss_fn = torch.nn.CrossEntropyLoss()
 
     # Stochastic gradient descent optimization algorithm
     # 1. Increase the momentum from zero to:
