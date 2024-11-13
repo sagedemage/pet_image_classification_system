@@ -5,6 +5,7 @@ from PIL import ImageTk, Image
 import glob
 import shutil
 from pathlib import Path
+from config import img_size
 
 WIDTH = 1020
 HEIGHT = 645
@@ -19,7 +20,7 @@ picked_image_paths = []
 image_paths = glob.glob("dataset/oxford-iiit-pet/images/*.jpg", recursive=False)
 
 for image_path in image_paths:
-    image = ImageTk.PhotoImage(Image.open(image_path).resize((600, 350)))
+    image = ImageTk.PhotoImage(Image.open(image_path).resize(img_size))
     images.append(image)
 
 counter = 0
@@ -101,7 +102,7 @@ def save_images():
     if len(picked_image_paths) == 4:
         dest_path_s = "picked_images/pets"
         file = open(
-            "picked_images/pets/picked_pet_images.txt", "a", encoding="utf-8"
+            "picked_images/pets/picked_pet_images.txt", "w", encoding="utf-8"
         )
         for i in range(len(picked_image_paths)):
             image_path_s = picked_image_paths[i]
