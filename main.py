@@ -9,17 +9,17 @@ import numpy as np
 from torchvision import datasets, transforms
 import pandas as pd
 
-from config import BATCH_SIZE
+from config import BATCH_SIZE, img_size
 
 annotations_text = "dataset/oxford-iiit-pet/annotations/trainval.txt"
 OXFORD_III_PET_LABELS_CSV = "labels/oxford-iiit-pet_labels.csv"
 
 
-def load_training(root_path: str, img_size: tuple[int, int]):
+def load_training(root_path: str, image_size: tuple[int, int]):
     transform = transforms.Compose(
         [
             transforms.ToTensor(),
-            transforms.Resize(img_size),
+            transforms.Resize(image_size),
             transforms.Normalize((0.5,), (0.5,)),
         ]
     )
@@ -42,8 +42,6 @@ def main():
         if torch.cuda.is_available()
         else "mps" if torch.backends.mps.is_available() else "cpu"
     )
-
-    img_size = (500, 300)
 
     picked_data_loader = load_training("picked_images/", img_size)
 
@@ -89,6 +87,7 @@ def main():
         # Dog
         print("The pet is a dog")
         print(f"The breed of the dog is: {label}")
+
 
 if __name__ == "__main__":
     main()

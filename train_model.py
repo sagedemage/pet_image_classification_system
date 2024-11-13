@@ -12,7 +12,7 @@ from datetime import datetime
 
 from ml.model import PetClassifier
 
-from config import BATCH_SIZE
+from config import BATCH_SIZE, img_size
 
 TRAINED_MODEL_DIR = "trained_models/"
 LOG_DATA_DIR = "runs/"
@@ -76,7 +76,6 @@ def train_one_epoch(
 
 
 def main():
-    img_size = (500, 300)
     dataset = datasets.OxfordIIITPet(
         root="dataset",
         split="trainval",

@@ -16,3 +16,6 @@ PICKED_MOVIE_TEXT_FILE = "personalized_dataset/picked_movie.txt"
 
 # The batch size is used for preparing the data with DataLoaders
 BATCH_SIZE = 4
+
+# Image size to resize to
+img_size = (500, 300)
