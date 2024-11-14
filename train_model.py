@@ -48,9 +48,6 @@ def train_one_epoch(
         inputs = inputs.type(torch.float32)
 
         labels = labels.to(device)
-        labels = labels.type(torch.float32)
-        x = torch.ones(4, 4).to(device)
-        labels = labels * x
 
         # Make predictions for this batch
         outputs = model(inputs)
@@ -94,10 +91,10 @@ def main():
     )
 
     training_loader = DataLoader(
-        training_set, batch_size=BATCH_SIZE, shuffle=True
+        training_set, batch_size=BATCH_SIZE, shuffle=True, drop_last=True
     )
     validation_loader = DataLoader(
-        validation_set, batch_size=BATCH_SIZE, shuffle=False
+        validation_set, batch_size=BATCH_SIZE, shuffle=False, drop_last=True
     )
 
     # Report the sizes of the datasets
@@ -174,9 +171,6 @@ def main():
                 vinputs = vinputs.type(torch.float32)
 
                 vlabels = vlabels.to(device)
-                vlabels = vlabels.type(torch.float32)
-                x = torch.ones(4, 4).to(device)
-                vlabels = vlabels * x
 
                 voutputs = model(vinputs)
                 vloss = loss_fn(voutputs, vlabels)
