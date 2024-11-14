@@ -68,9 +68,9 @@ def main():
     # using the get_item_by_movie_id method of the
     # MovieDataset class.
     pred_probab = nn.ReLU()(logits)
-    rand_nums = np.random.rand(BATCH_SIZE)
+    rand_nums = np.random.rand(4)
     batch_pred = rand_nums.argmax()
-    pred_input = round(float(pred_probab[batch_pred].sum()) * 100, 0)
+    pred_input = round(float(pred_probab[batch_pred].sum()), 0)
     index = int(pred_input)
 
     df_pet_labels_data = pd.read_csv(OXFORD_III_PET_LABELS_CSV)
