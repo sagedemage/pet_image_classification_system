@@ -7,6 +7,8 @@ from torch import nn
 from ml.model import PetClassifier
 import numpy as np
 from torchvision import datasets, transforms
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 import pandas as pd
 
 from config import BATCH_SIZE, img_size
@@ -78,6 +80,20 @@ def main():
     row = rows.iloc[0]
     label = row["Label"]
     cat_or_dog = row["Cat_Dog"]
+    images = []
+    image_1 = row["Image_1"]
+    image_2 = row["Image_2"]
+    images.append(image_1)
+    images.append(image_2)
+
+    image_1_elements = image_1.split("/")
+    image_2_elements = image_2.split("/")
+
+    image_file_names = []
+    image_1_file_name = image_1_elements[3].strip(".jpg")
+    image_2_file_name = image_2_elements[3].strip(".jpg")
+    image_file_names.append(image_1_file_name)
+    image_file_names.append(image_2_file_name)
 
     if cat_or_dog == 0:
         # Cat
@@ -87,6 +103,22 @@ def main():
         # Dog
         print("The pet is a dog")
         print(f"The breed of the dog is: {label}")
+
+    fig = plt.figure(
+        num="Images of the Predicted Breed of the Pet", figsize=(200, 300)
+    )
+    columns = 2
+    rows = 1
+
+    ax = []
+
+    for i in range(columns * rows):
+        img = mpimg.imread(images[i])
+        ax.append(fig.add_subplot(rows, columns, i + 1))
+        ax[-1].set_title(f"{image_file_names[i]}")
+        plt.imshow(img)
+
+    plt.show()
 
 
 if __name__ == "__main__":
