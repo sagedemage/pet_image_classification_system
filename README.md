@@ -67,3 +67,4 @@ python3 main.py trained_models/model_20241110_144454_22.pt
 - [Make a Simple Image Gallery Using Tkinter and Python - Medium](https://dev.to/mooict/make-a-simple-image-gallery-using-tkinter-and-python-2p4j)
 - [Loss Functions in PyTorch Models - Machine Learning Mastery](https://machinelearningmastery.com/loss-functions-in-pytorch-models/)
 - [timm/oxford-iiit-pet - Hugging Face](https://huggingface.co/datasets/timm/oxford-iiit-pet)
+- [IndexError: Target 2 is out of bounds](https://discuss.pytorch.org/t/indexerror-target-2-is-out-of-bounds/69614/7)
