@@ -20,7 +20,7 @@ picked_image_paths = []
 image_paths = glob.glob("dataset/oxford-iiit-pet/images/*.jpg", recursive=False)
 
 for image_path in image_paths:
-    image = ImageTk.PhotoImage(Image.open(image_path).resize(img_size))
+    image = ImageTk.PhotoImage(Image.open(image_path).resize((600, 400)))
     images.append(image)
 
 counter = 0
