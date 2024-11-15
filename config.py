@@ -16,4 +16,4 @@ PICKED_MOVIE_TEXT_FILE = "personalized_dataset/picked_movie.txt"
 BATCH_SIZE = 64
 
 # Image size to resize to
-img_size = (200, 300)
+img_size = (300, 200)
