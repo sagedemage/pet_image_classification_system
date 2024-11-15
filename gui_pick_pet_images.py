@@ -5,7 +5,6 @@ from PIL import ImageTk, Image
 import glob
 import shutil
 from pathlib import Path
-from config import img_size
 
 WIDTH = 1020
 HEIGHT = 645
