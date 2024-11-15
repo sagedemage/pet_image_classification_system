@@ -91,8 +91,8 @@ def main():
     image_2_elements = image_2.split("/")
 
     image_file_names = []
-    image_1_file_name = image_1_elements[3].strip(".jpg")
-    image_2_file_name = image_2_elements[3].strip(".jpg")
+    image_1_file_name = image_1_elements[3].rstrip(".jpg")
+    image_2_file_name = image_2_elements[3].rstrip(".jpg")
     image_file_names.append(image_1_file_name)
     image_file_names.append(image_2_file_name)
 
