@@ -151,8 +151,12 @@ def main():
     def next_image_binding(event):
         next_image()
 
+    def save_image_binding(event):
+        save_images()
+
     window.bind("<Left>", previous_image_binding)
     window.bind("<Right>", next_image_binding)
+    window.bind("<Control-s>", save_image_binding)
 
     # display components
     image_label.pack()
