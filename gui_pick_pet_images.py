@@ -145,13 +145,13 @@ def main():
         command=save_images,
     )
 
-    def previous_image_binding(event):
+    def previous_image_binding(event):  # pylint: disable=unused-argument
         previous_image()
 
-    def next_image_binding(event):
+    def next_image_binding(event):  # pylint: disable=unused-argument
         next_image()
 
-    def save_image_binding(event):
+    def save_image_binding(event):  # pylint: disable=unused-argument
         save_images()
 
     window.bind("<Left>", previous_image_binding)
