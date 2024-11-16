@@ -58,7 +58,7 @@ def main():
     logits = saved_model(picked_data_inputs)
 
     # Convert the model output to a NumPy ndarray in order to get
-    # a list of 4 labels to predict from
+    # a list of 1 predicted label
     pred_probab = torch.max(logits.data, 1)[1].numpy(force=True)
     index = int(pred_probab[0])
 
