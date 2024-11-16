@@ -4,7 +4,6 @@ import sys
 import torch
 from torch.utils.data import DataLoader
 from ml.model import PetClassifier
-import numpy as np
 from torchvision import datasets, transforms
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
@@ -16,7 +15,7 @@ annotations_text = "dataset/oxford-iiit-pet/annotations/trainval.txt"
 OXFORD_III_PET_LABELS_CSV = "labels/oxford-iiit-pet_labels.csv"
 
 
-def load_training(root_path: str, image_size: tuple[int, int]):
+def load_image(root_path: str, image_size: tuple[int, int]):
     transform = transforms.Compose(
         [
             transforms.ToTensor(),
@@ -44,7 +43,7 @@ def main():
         else "mps" if torch.backends.mps.is_available() else "cpu"
     )
 
-    picked_data_loader = load_training("picked_images/", img_size)
+    picked_data_loader = load_image("picked_images/", img_size)
 
     picked_data_inputs, _ = next(iter(picked_data_loader))
 
@@ -58,13 +57,10 @@ def main():
 
     logits = saved_model(picked_data_inputs)
 
-    rand_nums = np.random.rand(4)
-    batch_pred = rand_nums.argmax()
-
     # Convert the model output to a NumPy ndarray in order to get
     # a list of 4 labels to predict from
     pred_probab = torch.max(logits.data, 1)[1].numpy(force=True)
-    index = int(pred_probab[batch_pred])
+    index = int(pred_probab[0])
 
     df_pet_labels_data = pd.read_csv(OXFORD_III_PET_LABELS_CSV)
     rows = df_pet_labels_data.loc[df_pet_labels_data["ID"] == index]
