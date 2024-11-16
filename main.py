@@ -92,7 +92,7 @@ def main():
         print(f"The breed of the dog is: {label}")
 
     fig = plt.figure(
-        num="Images of the Predicted Breed of the Pet", figsize=(300, 200)
+        num="Images of the Predicted Breed of the Pet", figsize=(10, 5)
     )
     columns = 2
     rows = 1
