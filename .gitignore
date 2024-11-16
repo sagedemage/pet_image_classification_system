@@ -7,6 +7,7 @@ runs/
 trained_models/*.pt
 dataset/
 picked_images/pets/*.jpg
+picked_images/pets/*.txt
 
 # PyCharm Python IDE
 .idea/
