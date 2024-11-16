@@ -145,6 +145,15 @@ def main():
         command=save_images,
     )
 
+    def previous_image_binding(event):
+        previous_image()
+
+    def next_image_binding(event):
+        next_image()
+
+    window.bind("<Left>", previous_image_binding)
+    window.bind("<Right>", next_image_binding)
+
     # display components
     image_label.pack()
     info_label.pack()
