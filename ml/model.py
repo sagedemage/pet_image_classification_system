@@ -14,7 +14,7 @@ class PetClassifier(nn.Module):
             nn.ReLU(),
             nn.Linear(512, 512),
             nn.ReLU(),
-            nn.Linear(512, 64),
+            nn.Linear(512, 37),
         )
 
     def forward(self, x):
