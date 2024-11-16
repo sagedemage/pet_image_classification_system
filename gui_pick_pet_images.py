@@ -154,9 +154,17 @@ def main():
     def save_image_binding(event):  # pylint: disable=unused-argument
         save_images()
 
+    def pick_image_binding(event):  # pylint: disable=unused-argument
+        pick_image()
+
+    def remove_image_binding(event):  # pylint: disable=unused-argument
+        remove_image()
+
     window.bind("<Left>", previous_image_binding)
     window.bind("<Right>", next_image_binding)
     window.bind("<Control-s>", save_image_binding)
+    window.bind("<Return>", pick_image_binding)
+    window.bind("<BackSpace>", remove_image_binding)
 
     # display components
     image_label.pack()
