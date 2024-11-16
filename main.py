@@ -64,7 +64,6 @@ def main():
     # Convert the model output to a NumPy ndarray in order to get
     # a list of 4 labels to predict from
     pred_probab = torch.max(logits.data, 1)[1].numpy(force=True)
-    print(pred_probab)
     index = int(pred_probab[batch_pred])
 
     df_pet_labels_data = pd.read_csv(OXFORD_III_PET_LABELS_CSV)
