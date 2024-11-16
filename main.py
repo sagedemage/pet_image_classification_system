@@ -3,7 +3,6 @@
 import sys
 import torch
 from torch.utils.data import DataLoader
-from torch import nn
 from ml.model import PetClassifier
 import numpy as np
 from torchvision import datasets, transforms
@@ -59,22 +58,14 @@ def main():
 
     logits = saved_model(picked_data_inputs)
 
-    # Apply the rectified linear unit function (ReLU)
-    # to the model output to ensure the output is a
-    # tensor that always contains positive numbers.
-    #
-    # Output of the model for each number in the
-    # tensor is from [0, infinity).
-    #
-    # This is required to avoid an IndexError when
-    # using the get_item_by_movie_id method of the
-    # MovieDataset class.
-    pred_probab = nn.ReLU()(logits)
     rand_nums = np.random.rand(4)
     batch_pred = rand_nums.argmax()
-    pred_batch = pred_probab[batch_pred] * 10
-    pred_input = round(float(pred_batch.sum()), 0)
-    index = int(pred_input)
+
+    # Convert the model output to a NumPy ndarray in order to get
+    # a list of 4 labels to predict from
+    pred_probab = torch.max(logits.data, 1)[1].numpy(force=True)
+    print(pred_probab)
+    index = int(pred_probab[batch_pred])
 
     df_pet_labels_data = pd.read_csv(OXFORD_III_PET_LABELS_CSV)
     rows = df_pet_labels_data.loc[df_pet_labels_data["ID"] == index]
