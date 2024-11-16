@@ -97,12 +97,10 @@ def main():
     columns = 2
     rows = 1
 
-    ax = []
-
     for i in range(columns * rows):
         img = mpimg.imread(images[i])
-        ax.append(fig.add_subplot(rows, columns, i + 1))
-        ax[-1].set_title(f"{image_file_names[i]}")
+        axes = fig.add_subplot(rows, columns, i + 1)
+        axes.set_title(f"{image_file_names[i]}")
         plt.imshow(img)
 
     plt.show()
