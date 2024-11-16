@@ -23,6 +23,7 @@ for image_path in image_paths:
     images.append(image)
 
 counter = 0
+num_pets_pick = 1
 
 
 def next_image():
@@ -80,11 +81,11 @@ var1 = IntVar()
 def pick_image():
     picked_image_path = image_paths[counter]
     if picked_image_path not in picked_image_paths:
-        if len(picked_image_paths) < 4:
+        if len(picked_image_paths) < num_pets_pick:
             picked_image_paths.append(picked_image_path)
             print("Picked pet image.")
         else:
-            print("Picked 4 pet images!")
+            print(f"Picked {num_pets_pick} pet image!")
     else:
         print("This pet image has already been picked!")
 
@@ -94,27 +95,26 @@ def remove_image():
         picked_image_paths.pop()
         print("Removed pet image.")
     else:
-        print("There are no picked images!")
+        print("There are no picked image!")
 
 
 def save_images():
-    if len(picked_image_paths) == 4:
+    if len(picked_image_paths) == num_pets_pick:
         dest_path_s = "picked_images/pets"
         file = open(
             "picked_images/pets/picked_pet_images.txt", "w", encoding="utf-8"
         )
-        for i in range(len(picked_image_paths)):
-            image_path_s = picked_image_paths[i]
-            copied_file_path_s = shutil.copy(image_path_s, dest_path_s)
-            copied_file_path = Path(copied_file_path_s)
-            new_name = f"pet{i + 1}.jpg"
-            new_path = f"{dest_path_s}/{new_name}"
-            copied_file_path.rename(new_path)
-            file.write(image_path_s + "\n")
-        print("Saved pet images.")
+        image_path_s = picked_image_paths[0]
+        copied_file_path_s = shutil.copy(image_path_s, dest_path_s)
+        copied_file_path = Path(copied_file_path_s)
+        new_name = "pet.jpg"
+        new_path = f"{dest_path_s}/{new_name}"
+        copied_file_path.rename(new_path)
+        file.write(image_path_s + "\n")
         file.close()
+        print("Saved pet image.")
     else:
-        print("Pick 4 pet images!")
+        print(f"Pick {num_pets_pick} pet image!")
 
 
 pick_button = Button(
