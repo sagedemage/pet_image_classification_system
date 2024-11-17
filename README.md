@@ -22,7 +22,7 @@ tensorboard --logdir=runs
 python3 train_model.py
 ```
 
-### 2. Pick Pet Image
+### 2. Pick a Pet Image
 2.1 Use the GUI program to pick a pet image:
 ```
 python3 gui_pick_pet_image.py
