@@ -2,7 +2,7 @@
 Pet image classification system written in Python with PyTorch.
 
 ![Pet Image Classification System](./screenshots/pet_image_classification_system.webp)
-![Pick Pet Images GUI Program](./screenshots/pick_pet_images_gui_program.webp)
+![Pick Pet Images GUI Program](./screenshots/pick_pet_image_gui_program.webp)
 
 ## Source of the Oxford-IIIT Pet Dataset
 - [The Oxford-IIIT Pet Dataset](https://www.robots.ox.ac.uk/~vgg/data/pets/)
@@ -22,10 +22,10 @@ tensorboard --logdir=runs
 python3 train_model.py
 ```
 
-### 2. Pick Pet Images
-2.1 Use the GUI program to pick four pet images:
+### 2. Pick a Pet Image
+2.1 Use the GUI program to pick a pet image:
 ```
-python3 gui_pick_pet_images.py 
+python3 gui_pick_pet_image.py
 ```
 
 ### 3. Run Program
