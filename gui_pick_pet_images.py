@@ -176,6 +176,8 @@ def main():
     pick_button.pack(side="bottom", pady=3)
     save_button.pack(side="bottom", pady=3)
 
+    # this runs the application window, and it responds to events
+    # and process these events
     window.mainloop()
 
 
