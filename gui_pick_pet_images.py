@@ -160,6 +160,7 @@ def main():
     def remove_image_binding(event):  # pylint: disable=unused-argument
         remove_image()
 
+    # Set the key bindings for the window
     window.bind("<Left>", previous_image_binding)
     window.bind("<Right>", next_image_binding)
     window.bind("<Control-s>", save_image_binding)
@@ -174,6 +175,7 @@ def main():
     remove_button.pack(side="bottom", pady=3)
     pick_button.pack(side="bottom", pady=3)
     save_button.pack(side="bottom", pady=3)
+
     window.mainloop()
 
 
