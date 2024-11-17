@@ -167,7 +167,7 @@ def main():
     window.bind("<Return>", pick_image_binding)
     window.bind("<BackSpace>", remove_image_binding)
 
-    # display components
+    # display the components
     image_label.pack()
     info_label.pack()
     previous_button.pack(side="left", pady=3)
