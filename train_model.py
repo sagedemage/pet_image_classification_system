@@ -4,7 +4,7 @@ import torch
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 from torch.optim import SGD
-from torch.nn import L1Loss
+from torch.nn import CrossEntropyLoss
 from torchvision import datasets
 import torchvision.transforms as transforms
 
@@ -12,16 +12,16 @@ from datetime import datetime
 
 from ml.model import PetClassifier
 
-from config import BATCH_SIZE
+from config import BATCH_SIZE, img_size
 
 TRAINED_MODEL_DIR = "trained_models/"
 LOG_DATA_DIR = "runs/"
 
 # batch_size - how many samples per batch to load
-EPOCHS = 30
+EPOCHS = 190
 
 # Optimization
-LEARNING_RATE = 0.001
+LEARNING_RATE = 0.00000001
 MOMENTUM = 0.9
 
 
@@ -32,7 +32,7 @@ def train_one_epoch(
     optimizer: SGD,
     device: str,
     model: PetClassifier,
-    loss_fn: L1Loss,
+    loss_fn: CrossEntropyLoss,
 ):
     running_loss = 0.0
     last_loss = 0.0
@@ -48,7 +48,6 @@ def train_one_epoch(
         inputs = inputs.type(torch.float32)
 
         labels = labels.to(device)
-        labels = labels.type(torch.float32)
 
         # Make predictions for this batch
         outputs = model(inputs)
@@ -74,13 +73,16 @@ def train_one_epoch(
 
 
 def main():
-    img_size = (500, 300)
     dataset = datasets.OxfordIIITPet(
         root="dataset",
         split="trainval",
         download=True,
         transform=transforms.Compose(
-            [transforms.Resize(img_size), transforms.ToTensor()]
+            [
+                transforms.ToTensor(),
+                transforms.Resize(img_size),
+                transforms.Normalize((0.5,), (0.5,)),
+            ]
         ),
     )
 
@@ -89,10 +91,10 @@ def main():
     )
 
     training_loader = DataLoader(
-        training_set, batch_size=BATCH_SIZE, shuffle=True
+        training_set, batch_size=BATCH_SIZE, shuffle=True, drop_last=True
     )
     validation_loader = DataLoader(
-        validation_set, batch_size=BATCH_SIZE, shuffle=False
+        validation_set, batch_size=BATCH_SIZE, shuffle=False, drop_last=True
     )
 
     # Report the sizes of the datasets
@@ -113,7 +115,7 @@ def main():
     model = PetClassifier().to(device)
 
     # Loss Function
-    loss_fn = torch.nn.L1Loss()
+    loss_fn = torch.nn.CrossEntropyLoss()
 
     # Stochastic gradient descent optimization algorithm
     # 1. Increase the momentum from zero to:
@@ -169,7 +171,6 @@ def main():
                 vinputs = vinputs.type(torch.float32)
 
                 vlabels = vlabels.to(device)
-                vlabels = vlabels.type(torch.float32)
 
                 voutputs = model(vinputs)
                 vloss = loss_fn(voutputs, vlabels)

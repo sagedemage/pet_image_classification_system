@@ -3,21 +3,25 @@
 import sys
 import torch
 from torch.utils.data import DataLoader
-from torch import nn
 from ml.model import PetClassifier
-import numpy as np
 from torchvision import datasets, transforms
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+import pandas as pd
 
-from config import BATCH_SIZE
+from config import BATCH_SIZE, img_size
 
 annotations_text = "dataset/oxford-iiit-pet/annotations/trainval.txt"
+OXFORD_III_PET_LABELS_CSV = "labels/oxford-iiit-pet_labels.csv"
 
 
-def load_training(root_path: str, img_size: tuple[int, int]):
+def load_image(root_path: str, image_size: tuple[int, int]):
     transform = transforms.Compose(
-        [transforms.Resize(img_size), transforms.ToTensor()]
+        [
+            transforms.ToTensor(),
+            transforms.Resize(image_size),
+            transforms.Normalize((0.5,), (0.5,)),
+        ]
     )
     data = datasets.ImageFolder(root=root_path, transform=transform)
     data_loader = DataLoader(data, batch_size=BATCH_SIZE, shuffle=True)
@@ -39,9 +43,7 @@ def main():
         else "mps" if torch.backends.mps.is_available() else "cpu"
     )
 
-    img_size = (500, 300)
-
-    picked_data_loader = load_training("picked_images/", img_size)
+    picked_data_loader = load_image("picked_images/", img_size)
 
     picked_data_inputs, _ = next(iter(picked_data_loader))
 
@@ -55,41 +57,53 @@ def main():
 
     logits = saved_model(picked_data_inputs)
 
-    # Apply the rectified linear unit function (ReLU)
-    # to the model output to ensure the output is a
-    # tensor that always contains positive numbers.
-    #
-    # Output of the model for each number in the
-    # tensor is from [0, infinity).
-    #
-    # This is required to avoid an IndexError when
-    # using the get_item_by_movie_id method of the
-    # MovieDataset class.
-    pred_probab = nn.ReLU()(logits)
-    rand_nums = np.random.rand(BATCH_SIZE)
-    batch_pred = rand_nums.argmax()
-    rand_nums = np.random.rand(BATCH_SIZE)
-    pos_pred = rand_nums.argmax()
-    pred_input = round(float(pred_probab[batch_pred][pos_pred]), 0)
-    index = int(pred_input)
+    # Convert the model output to a NumPy ndarray in order to get
+    # a list of 1 predicted label
+    pred_probab = torch.max(logits.data, 1)[1].numpy(force=True)
+    index = int(pred_probab[0])
 
-    file = open(annotations_text, "r", encoding="utf-8")
-    lines = file.readlines()
+    df_pet_labels_data = pd.read_csv(OXFORD_III_PET_LABELS_CSV)
+    rows = df_pet_labels_data.loc[df_pet_labels_data["ID"] == index]
+    row = rows.iloc[0]
+    label = row["Label"]
+    cat_or_dog = row["Cat_Dog"]
+    images = []
+    image_1 = row["Image_1"]
+    image_2 = row["Image_2"]
+    images.append(image_1)
+    images.append(image_2)
 
-    line = lines[index]
-    line = line.strip("Label: ")
-    items = line.split(" ")
-    label = items[0]
+    image_1_elements = image_1.split("/")
+    image_2_elements = image_2.split("/")
 
-    print(f"The breed of the pet is: {label}")
+    image_file_names = []
+    image_1_file_name = image_1_elements[3].rstrip(".jpg")
+    image_2_file_name = image_2_elements[3].rstrip(".jpg")
+    image_file_names.append(image_1_file_name)
+    image_file_names.append(image_2_file_name)
 
-    img = mpimg.imread(f"dataset/oxford-iiit-pet/images/{label}.jpg")
-    plt.subplots(num="Image of the Predicted Breed of the Pet")
-    plt.imshow(img)
-    plt.title(f"{label}")
+    if cat_or_dog == 0:
+        # Cat
+        print("The pet is a cat")
+        print(f"The breed of the cat is: {label}")
+    elif cat_or_dog == 1:
+        # Dog
+        print("The pet is a dog")
+        print(f"The breed of the dog is: {label}")
+
+    fig = plt.figure(
+        num="Images of the Predicted Breed of the Pet", figsize=(10, 5)
+    )
+    columns = 2
+    rows = 1
+
+    for i in range(columns * rows):
+        img = mpimg.imread(images[i])
+        axes = fig.add_subplot(rows, columns, i + 1)
+        axes.set_title(f"{image_file_names[i]}")
+        plt.imshow(img)
+
     plt.show()
-
-    file.close()
 
 
 if __name__ == "__main__":
