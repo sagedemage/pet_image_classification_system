@@ -115,7 +115,7 @@ def main():
 
     save_button = Button(
         window,
-        text="Save the images",
+        text="Save the image",
         width=20,
         height=2,
         bg="green",
