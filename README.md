@@ -22,10 +22,10 @@ tensorboard --logdir=runs
 python3 train_model.py
 ```
 
-### 2. Pick Pet Images
-2.1 Use the GUI program to pick four pet images:
+### 2. Pick Pet Image
+2.1 Use the GUI program to pick a pet image:
 ```
-python3 gui_pick_pet_images.py 
+python3 gui_pick_pet_image.py
 ```
 
 ### 3. Run Program
