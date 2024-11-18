@@ -1,5 +1,5 @@
 ID,Label,Cat_Dog,Image_1,Image_2
-0,abyssinian,0,dataset/oxford-iiit-pet/images/Abyssian_24.jpg,dataset/oxford-iiit-pet/images/Abyssian_47.jpg
+0,abyssinian,0,dataset/oxford-iiit-pet/images/Abyssinian_24.jpg,dataset/oxford-iiit-pet/images/Abyssinian_47.jpg
 1,american_bulldog,1,dataset/oxford-iiit-pet/images/american_bulldog_24.jpg,dataset/oxford-iiit-pet/images/american_bulldog_47.jpg
 2,american_pit_bull_terrier,1,dataset/oxford-iiit-pet/images/american_pit_bull_terrier_24.jpg,dataset/oxford-iiit-pet/images/american_pit_bull_terrier_47.jpg
 3,basset_hound,1,dataset/oxford-iiit-pet/images/basset_hound_24.jpg,dataset/oxford-iiit-pet/images/basset_hound_47.jpg
@@ -19,7 +19,7 @@ ID,Label,Cat_Dog,Image_1,Image_2
 17,japanese_chin,1,dataset/oxford-iiit-pet/images/japanese_chin_24.jpg,dataset/oxford-iiit-pet/images/japanese_chin_47.jpg
 18,keeshond,1,dataset/oxford-iiit-pet/images/keeshond_24.jpg,dataset/oxford-iiit-pet/images/keeshond_47.jpg
 19,leonberger,1,dataset/oxford-iiit-pet/images/leonberger_24.jpg,dataset/oxford-iiit-pet/images/leonberger_47.jpg
-20,maine_coon,0,dataset/oxford-iiit-pet/images/Main_Coon_24.jpg,dataset/oxford-iiit-pet/images/Main_Coon_47.jpg
+20,maine_coon,0,dataset/oxford-iiit-pet/images/Maine_Coon_24.jpg,dataset/oxford-iiit-pet/images/Maine_Coon_47.jpg
 21,miniature_pinscher,1,dataset/oxford-iiit-pet/images/miniature_pinscher_24.jpg,dataset/oxford-iiit-pet/images/miniature_pinscher_47.jpg
 22,newfoundland,1,dataset/oxford-iiit-pet/images/newfoundland_24.jpg,dataset/oxford-iiit-pet/images/newfoundland_47.jpg
 23,persian,0,dataset/oxford-iiit-pet/images/Persian_30.jpg,dataset/oxford-iiit-pet/images/Persian_45.jpg
@@ -28,7 +28,7 @@ ID,Label,Cat_Dog,Image_1,Image_2
 26,ragdoll,0,dataset/oxford-iiit-pet/images/Ragdoll_24.jpg,dataset/oxford-iiit-pet/images/Ragdoll_47.jpg
 27,russian_blue,0,dataset/oxford-iiit-pet/images/Russian_Blue_24.jpg,dataset/oxford-iiit-pet/images/Russian_Blue_47.jpg
 28,saint_bernard,1,dataset/oxford-iiit-pet/images/saint_bernard_24.jpg,dataset/oxford-iiit-pet/images/saint_bernard_47.jpg
-29,samoyed,1,dataset/oxford-iiit-pet/images/samyod_24.jpg,dataset/oxford-iiit-pet/images/samyod_47.jpg
+29,samoyed,1,dataset/oxford-iiit-pet/images/samoyed_24.jpg,dataset/oxford-iiit-pet/images/samoyed_47.jpg
 30,scottish_terrier,1,dataset/oxford-iiit-pet/images/scottish_terrier_24.jpg,dataset/oxford-iiit-pet/images/scottish_terrier_47.jpg
 31,shiba_inu,1,dataset/oxford-iiit-pet/images/shiba_inu_24.jpg,dataset/oxford-iiit-pet/images/shiba_inu_47.jpg
 32,siamese,0,dataset/oxford-iiit-pet/images/Siamese_24.jpg,dataset/oxford-iiit-pet/images/Siamese_47.jpg
