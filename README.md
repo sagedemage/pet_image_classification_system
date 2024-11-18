@@ -70,3 +70,4 @@ python3 main.py trained_models/model_20241110_144454_22.pt
 - [IndexError: Target 2 is out of bounds](https://discuss.pytorch.org/t/indexerror-target-2-is-out-of-bounds/69614/7)
 - [How do I use a saved model in Pytorch to predict the label of a never before seen image? - StackOverflow](https://stackoverflow.com/questions/51803437/how-do-i-use-a-saved-model-in-pytorch-to-predict-the-label-of-a-never-before-see)
 - [Deep learning basics — weight decay - Medium](https://medium.com/analytics-vidhya/deep-learning-basics-weight-decay-3c68eb4344e9)
+  - [Archived article](https://archive.is/69Glt)
