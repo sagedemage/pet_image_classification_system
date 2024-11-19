@@ -23,6 +23,7 @@ EPOCHS = 190
 # Optimization
 LEARNING_RATE = 0.00000001
 MOMENTUM = 0.9
+WEIGHT_DECAY = 0.0001
 
 
 def train_one_epoch(
@@ -86,8 +87,13 @@ def main():
         ),
     )
 
+    trg_per = 0.85
+    val_per = 1.00 - trg_per
+    training_size = int(len(dataset) * trg_per)
+    validation_size = int(len(dataset) * val_per)
+
     training_set, validation_set = torch.utils.data.random_split(
-        dataset, [3128, 552]
+        dataset, [training_size, validation_size]
     )
 
     training_loader = DataLoader(
@@ -123,11 +129,15 @@ def main():
     #   2. smooth out the oscillations
     # 2. Enable Nesterov Momentum to improve the convergence
     # speed of stochastic gradient descent.
+    # 3. Increase the weight decay from zero to:
+    #   1. prevent overfitting
+    #   2. keep the weights small and avoid exploding the gradient
     optimizer = torch.optim.SGD(
         model.parameters(),
         lr=LEARNING_RATE,
         momentum=MOMENTUM,
         nesterov=True,
+        weight_decay=WEIGHT_DECAY,
     )
 
     # Training Loop
