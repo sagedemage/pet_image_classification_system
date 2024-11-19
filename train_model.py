@@ -87,8 +87,10 @@ def main():
         ),
     )
 
-    training_size = int(len(dataset) * 0.85)
-    validation_size = int(len(dataset) * 0.15)
+    trg_per = 0.85
+    val_per = 1.00 - trg_per
+    training_size = int(len(dataset) * trg_per)
+    validation_size = int(len(dataset) * val_per)
 
     training_set, validation_set = torch.utils.data.random_split(
         dataset, [training_size, validation_size]
