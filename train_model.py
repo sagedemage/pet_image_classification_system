@@ -116,7 +116,7 @@ def main():
             # 8 threads in total
             cores = 4
             threads = 2
-            num_workers = cores*threads/4
+            num_workers = cores * threads / 4
         case "cuda":
             # NVIDIA GeForce GTX 1060 6GB
             # 1280 CUDA cores
@@ -130,10 +130,20 @@ def main():
             pin_memory = True
 
     training_loader = DataLoader(
-        training_set, batch_size=BATCH_SIZE, shuffle=True, drop_last=True, num_workers=num_workers, pin_memory=pin_memory
+        training_set,
+        batch_size=BATCH_SIZE,
+        shuffle=True,
+        drop_last=True,
+        num_workers=num_workers,
+        pin_memory=pin_memory,
     )
     validation_loader = DataLoader(
-        validation_set, batch_size=BATCH_SIZE, shuffle=False, drop_last=True, num_workers=num_workers, pin_memory=pin_memory
+        validation_set,
+        batch_size=BATCH_SIZE,
+        shuffle=False,
+        drop_last=True,
+        num_workers=num_workers,
+        pin_memory=pin_memory,
     )
 
     # Report the sizes of the datasets
