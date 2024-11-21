@@ -118,15 +118,8 @@ def main():
             threads = 2
             num_workers = cores * threads / 4
         case "cuda":
-            # NVIDIA GeForce GTX 1060 6GB
-            # 1280 CUDA cores
-            # 32 threads per core
-            # 40960 threads in total
             pin_memory = True
         case "mps":
-            # Macbook Air (M1, 2020)
-            # 7 cores
-            # 16 threads per core
             pin_memory = True
 
     training_loader = DataLoader(
