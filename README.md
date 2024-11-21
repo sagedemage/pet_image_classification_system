@@ -72,3 +72,5 @@ python3 main.py trained_models/model_20241110_144454_22.pt
 - [Deep learning basics — weight decay - Medium](https://medium.com/analytics-vidhya/deep-learning-basics-weight-decay-3c68eb4344e9)
   - [Archived article](https://archive.is/69Glt)
 - [MPS backend - PyTorch](https://pytorch.org/docs/stable/notes/mps.html)
+- [torch.optim - PyTorch](https://pytorch.org/docs/main/optim.html)
+- [torch.optim.Optimizer.zero_grad](https://pytorch.org/docs/main/generated/torch.optim.Optimizer.zero_grad.html#torch.optim.Optimizer.zero_grad)
