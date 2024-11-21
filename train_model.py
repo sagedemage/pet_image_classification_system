@@ -96,18 +96,6 @@ def main():
         dataset, [training_size, validation_size]
     )
 
-    training_loader = DataLoader(
-        training_set, batch_size=BATCH_SIZE, shuffle=True, drop_last=True
-    )
-    validation_loader = DataLoader(
-        validation_set, batch_size=BATCH_SIZE, shuffle=False, drop_last=True
-    )
-
-    # Report the sizes of the datasets
-    print(f"Training set has {len(training_set)} instances")
-    print(f"Validation set has {len(validation_set)} instances")
-    print("")
-
     device = (
         "cuda"
         if torch.cuda.is_available()
@@ -115,6 +103,42 @@ def main():
     )
 
     print(f"Using {device} device")
+    print("")
+
+    pin_memory = False
+    num_workers = 8
+
+    match device:
+        case "cpu":
+            # Intel(R) Core(TM) i7-4770
+            # 4 cores
+            # 2 threads per core
+            # 8 threads in total
+            cores = 4
+            threads = 2
+            num_workers = cores*threads/4
+        case "cuda":
+            # NVIDIA GeForce GTX 1060 6GB
+            # 1280 CUDA cores
+            # 32 threads per core
+            # 40960 threads in total
+            pin_memory = True
+        case "mps":
+            # Macbook Air (M1, 2020)
+            # 7 cores
+            # 16 threads per core
+            pin_memory = True
+
+    training_loader = DataLoader(
+        training_set, batch_size=BATCH_SIZE, shuffle=True, drop_last=True, num_workers=num_workers, pin_memory=pin_memory
+    )
+    validation_loader = DataLoader(
+        validation_set, batch_size=BATCH_SIZE, shuffle=False, drop_last=True, num_workers=num_workers, pin_memory=pin_memory
+    )
+
+    # Report the sizes of the datasets
+    print(f"Training set has {len(training_set)} instances")
+    print(f"Validation set has {len(validation_set)} instances")
     print("")
 
     # Model
