@@ -109,17 +109,16 @@ def main():
     print("")
 
     pin_memory = False
-    num_workers = 8
+
+    # Intel(R) Core(TM) i7-4770
+    # 4 cores
+    # 2 threads per core
+    # 8 threads in total
+    cores = 4
+    threads = 2
+    num_workers = int(cores * threads / 4)
 
     match device:
-        case "cpu":
-            # Intel(R) Core(TM) i7-4770
-            # 4 cores
-            # 2 threads per core
-            # 8 threads in total
-            cores = 4
-            threads = 2
-            num_workers = cores * threads / 4
         case "cuda":
             # This tells the DataLoader to use pinned memory and this
             # enables faster and asynchronous memory copy from the
