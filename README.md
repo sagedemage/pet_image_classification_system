@@ -71,3 +71,4 @@ python3 main.py trained_models/model_20241110_144454_22.pt
 - [How do I use a saved model in Pytorch to predict the label of a never before seen image? - Stack Overflow](https://stackoverflow.com/questions/51803437/how-do-i-use-a-saved-model-in-pytorch-to-predict-the-label-of-a-never-before-see)
 - [Deep learning basics — weight decay - Medium](https://medium.com/analytics-vidhya/deep-learning-basics-weight-decay-3c68eb4344e9)
   - [Archived article](https://archive.is/69Glt)
+- [MPS backend - PyTorch](https://pytorch.org/docs/stable/notes/mps.html)
