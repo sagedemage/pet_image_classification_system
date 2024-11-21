@@ -121,9 +121,20 @@ def main():
             threads = 2
             num_workers = cores * threads / 4
         case "cuda":
+            # This tells the DataLoader to use pinned memory and this
+            # enables faster and asynchronous memory copy from the
+            # CPU to the GPU.
             pin_memory = True
+            # Prioritize computational speed over numerical precision.
+            # It uses the TensorFloat32 datatype or each float32 number
+            # becomes a sum of two bfloat16 numbers if the fast matrix
+            # multiplication is available. If not, float32 matrix
+            # multiplications are computed with the "highest"
+            # precision.
+            torch.set_float32_matmul_precision("high")
         case "mps":
             pin_memory = True
+            torch.set_float32_matmul_precision("high")
 
     training_loader = DataLoader(
         training_set,
