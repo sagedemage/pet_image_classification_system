@@ -74,3 +74,4 @@ python3 main.py trained_models/model_20241110_144454_22.pt
 - [MPS backend - PyTorch](https://pytorch.org/docs/stable/notes/mps.html)
 - [torch.optim - PyTorch](https://pytorch.org/docs/main/optim.html)
 - [torch.optim.Optimizer.zero_grad](https://pytorch.org/docs/main/generated/torch.optim.Optimizer.zero_grad.html#torch.optim.Optimizer.zero_grad)
+- [torch.set_float32_matmul_precision - PyTorch](https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html)
