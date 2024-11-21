@@ -41,8 +41,11 @@ def train_one_epoch(
     for i, data in enumerate(training_loader):
         inputs, labels = data
 
-        # Zero the gradients for every batch!
-        optimizer.zero_grad()
+        # Set the gradients to None for every batch!
+        # Setting the grads to None lowers the memory
+        # footprint, and can moderately improve the
+        # performance of training the model.
+        optimizer.zero_grad(set_to_none=True)
 
         # Perform a transform on the data for it to be usable for the model
         inputs = inputs.to(device)
@@ -96,18 +99,6 @@ def main():
         dataset, [training_size, validation_size]
     )
 
-    training_loader = DataLoader(
-        training_set, batch_size=BATCH_SIZE, shuffle=True, drop_last=True
-    )
-    validation_loader = DataLoader(
-        validation_set, batch_size=BATCH_SIZE, shuffle=False, drop_last=True
-    )
-
-    # Report the sizes of the datasets
-    print(f"Training set has {len(training_set)} instances")
-    print(f"Validation set has {len(validation_set)} instances")
-    print("")
-
     device = (
         "cuda"
         if torch.cuda.is_available()
@@ -115,6 +106,55 @@ def main():
     )
 
     print(f"Using {device} device")
+    print("")
+
+    pin_memory = False
+
+    # Intel(R) Core(TM) i7-4770
+    # 4 cores
+    # 2 threads per core
+    # 8 threads in total
+    cores = 4
+    threads = 2
+    num_workers = int(cores * threads / 4)
+
+    match device:
+        case "cuda":
+            # This tells the DataLoader to use pinned memory and this
+            # enables faster and asynchronous memory copy from the
+            # CPU to the GPU.
+            pin_memory = True
+            # Prioritize computational speed over numerical precision.
+            # It uses the TensorFloat32 datatype or each float32 number
+            # becomes a sum of two bfloat16 numbers if the fast matrix
+            # multiplication is available. If not, float32 matrix
+            # multiplications are computed with the "highest"
+            # precision.
+            torch.set_float32_matmul_precision("high")
+        case "mps":
+            pin_memory = True
+            torch.set_float32_matmul_precision("high")
+
+    training_loader = DataLoader(
+        training_set,
+        batch_size=BATCH_SIZE,
+        shuffle=True,
+        drop_last=True,
+        num_workers=num_workers,
+        pin_memory=pin_memory,
+    )
+    validation_loader = DataLoader(
+        validation_set,
+        batch_size=BATCH_SIZE,
+        shuffle=False,
+        drop_last=True,
+        num_workers=num_workers,
+        pin_memory=pin_memory,
+    )
+
+    # Report the sizes of the datasets
+    print(f"Training set has {len(training_set)} instances")
+    print(f"Validation set has {len(validation_set)} instances")
     print("")
 
     # Model

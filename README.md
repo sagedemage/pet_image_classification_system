@@ -43,14 +43,14 @@ python3 main.py trained_models/model_20241110_144454_22.pt
 
 ## Resource
 - [PyTorch Website](https://pytorch.org)
-- Introduction to PyTorch
+- Introduction to PyTorch - PyTorch
   - [Learn the Basics](https://pytorch.org/tutorials/beginner/basics/intro.html)
   - [Quickstart](https://pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html)
   - [Tensors](https://pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html)
   - [Datasets & DataLoaders](https://pytorch.org/tutorials/beginner/basics/data_tutorial.html)
   - [Build the Neural Network](https://pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html)
   - [Optimizing Model Parameters](https://pytorch.org/tutorials/beginner/basics/optimization_tutorial.html)
-- Introduction to PyTorch on YouTube
+- Introduction to PyTorch on YouTube - PyTorch
   - [Introduction to PyTorch - YouTube Series](https://pytorch.org/tutorials/beginner/introyt.html)
   - [Introduction to PyTorch](https://pytorch.org/tutorials/beginner/introyt/introyt1_tutorial.html)
   - [Introduction to PyTorch Tensors](https://pytorch.org/tutorials/beginner/introyt/tensors_deeper_tutorial.html)
@@ -71,3 +71,8 @@ python3 main.py trained_models/model_20241110_144454_22.pt
 - [How do I use a saved model in Pytorch to predict the label of a never before seen image? - Stack Overflow](https://stackoverflow.com/questions/51803437/how-do-i-use-a-saved-model-in-pytorch-to-predict-the-label-of-a-never-before-see)
 - [Deep learning basics — weight decay - Medium](https://medium.com/analytics-vidhya/deep-learning-basics-weight-decay-3c68eb4344e9)
   - [Archived article](https://archive.is/69Glt)
+- [MPS backend - PyTorch](https://pytorch.org/docs/stable/notes/mps.html)
+- [Performance Tuning Guide - PyTorch](https://pytorch.org/tutorials/recipes/recipes/tuning_guide.html)
+  - [torch.optim](https://pytorch.org/docs/main/optim.html)
+  - [torch.optim.Optimizer.zero_grad](https://pytorch.org/docs/main/generated/torch.optim.Optimizer.zero_grad.html#torch.optim.Optimizer.zero_grad)
+  - [torch.set_float32_matmul_precision](https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html)
