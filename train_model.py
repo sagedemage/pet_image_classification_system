@@ -41,8 +41,11 @@ def train_one_epoch(
     for i, data in enumerate(training_loader):
         inputs, labels = data
 
-        # Zero the gradients for every batch!
-        optimizer.zero_grad()
+        # Set the gradients to None for every batch!
+        # Setting the grads to None lowers the memory
+        # footprint, and can moderately improve the
+        # performance of training the model.
+        optimizer.zero_grad(set_to_none=True)
 
         # Perform a transform on the data for it to be usable for the model
         inputs = inputs.to(device)
