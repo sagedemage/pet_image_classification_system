@@ -225,12 +225,8 @@ def main():
                 voutputs = model(vinputs)
                 vloss = loss_fn(voutputs, vlabels)
                 running_test_loss += vloss
-                correct += (
-                    (voutputs.argmax(0) == vlabels)
-                    .type(torch.float)
-                    .sum()
-                    .item()
-                )
+                pred = torch.max(voutputs.data, 1)[1]
+                correct += (pred == vlabels).type(torch.float).sum().item()
 
         avg_vloss = running_test_loss / num_batches
         accuracy = 100 * (correct / size)
