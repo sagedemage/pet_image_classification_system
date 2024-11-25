@@ -18,10 +18,10 @@ TRAINED_MODEL_DIR = "trained_models/"
 LOG_DATA_DIR = "runs/"
 
 # batch_size - how many samples per batch to load
-EPOCHS = 190
+EPOCHS = 130
 
 # Optimization
-LEARNING_RATE = 0.00000001
+LEARNING_RATE = 0.000001
 MOMENTUM = 0.9
 WEIGHT_DECAY = 0.0001
 
