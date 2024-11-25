@@ -23,7 +23,7 @@ EPOCHS = 130
 # Optimization
 LEARNING_RATE = 0.000001
 MOMENTUM = 0.9
-#WEIGHT_DECAY = 0.0001
+# WEIGHT_DECAY = 0.0001
 
 
 def train_one_epoch(
@@ -177,7 +177,7 @@ def main():
         lr=LEARNING_RATE,
         momentum=MOMENTUM,
         nesterov=True,
-        #weight_decay=WEIGHT_DECAY,
+        # weight_decay=WEIGHT_DECAY,
     )
 
     # Training Loop
