@@ -18,10 +18,10 @@ TRAINED_MODEL_DIR = "trained_models/"
 LOG_DATA_DIR = "runs/"
 
 # batch_size - how many samples per batch to load
-EPOCHS = 190
+EPOCHS = 130
 
 # Optimization
-LEARNING_RATE = 0.00000001
+LEARNING_RATE = 0.000001
 MOMENTUM = 0.9
 WEIGHT_DECAY = 0.0001
 
@@ -68,7 +68,6 @@ def train_one_epoch(
 
         if i % 10 == 0:
             last_loss = running_loss / 10  # loss per batch
-            print(f"batch {i + 1} loss: {last_loss}")
             tb_x = epoch_index * len(training_loader) + i + 1
             tb_writer.add_scalar("Loss/train", last_loss, tb_x)
             running_loss = 0.0
