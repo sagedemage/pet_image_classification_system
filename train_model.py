@@ -23,7 +23,7 @@ EPOCHS = 130
 # Optimization
 LEARNING_RATE = 0.000001
 MOMENTUM = 0.9
-WEIGHT_DECAY = 0.00001
+WEIGHT_DECAY = 0.0001
 
 
 def train_one_epoch(
