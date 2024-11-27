@@ -20,3 +20,6 @@ picked_images/pets/*.txt
 
 # Cache files
 *.~*
+
+# Node
+pet_image_picker/node_modules
