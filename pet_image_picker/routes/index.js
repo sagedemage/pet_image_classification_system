@@ -9,6 +9,15 @@ router.get('/', function(req, res, next) {
   let image_files = []
   let row = []
   console.log(files.length)
+
+  for (let i = 0; i < files.length; i++) {
+    file = files[i]
+    let file_ext = file.slice(file.length - 4, file.length)
+    if (file_ext != ".jpg") {
+      files.splice(i, 1)
+    }
+  }
+
   for (let i = 0; i < files.length; i++) {
     file = files[i]
     let image_file = "images/" + file;
@@ -18,7 +27,6 @@ router.get('/', function(req, res, next) {
       row = []
     }
   }
-  console.log(image_files[0])
   res.render('index', { title: 'Pet Image Picker', image_files: image_files });
 });
 
