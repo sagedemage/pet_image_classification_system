@@ -1,9 +1,25 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const fs = require("fs");
+let router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Pet Image Picker' });
+  let image_dir = "public/images"
+  let files = fs.readdirSync(image_dir);
+  let image_files = []
+  let row = []
+  console.log(files.length)
+  for (let i = 0; i < files.length; i++) {
+    file = files[i]
+    let image_file = "images/" + file;
+    row.push(image_file);
+    if ((i+1) % 10 == 0) {
+      image_files.push(row)
+      row = []
+    }
+  }
+  console.log(image_files[0])
+  res.render('index', { title: 'Pet Image Picker', image_files: image_files });
 });
 
 router.get("/about", function(req, res, next) {
