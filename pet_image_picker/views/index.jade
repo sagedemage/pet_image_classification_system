@@ -3,28 +3,12 @@ extends layout
 block content
   h1= title
   p Welcome to the pet image picker application.
-  table
-    each row in image_files
-      tr
-        td
-          img(src=row[0] width=100 height=100)
-        td
-          img(src=row[1] width=100 height=100)
-        td
-          img(src=row[2] width=100 height=100)
-        td
-          img(src=row[3] width=100 height=100)
-        td
-          img(src=row[4] width=100 height=100)
-        td
-          img(src=row[5] width=100 height=100)
-        td
-          img(src=row[6] width=100 height=100)
-        td
-          img(src=row[7] width=100 height=100)
-        td
-          img(src=row[8] width=100 height=100)
-        td
-          img(src=row[9] width=100 height=100)
+  p
+    img(id="pet_image" src="images/Abyssinian_1.jpg" width=500 height=400)
+    p(id="image_pos") 0 of N/A
+  button(onclick="previous()") Previous
+  button(onclick="next()") Next
+
+  script(type="text/javascript" src="javascripts/main.js")
 
 
