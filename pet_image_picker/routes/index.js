@@ -11,11 +11,7 @@ router.get('/', function(req, res, next) {
   console.log(files.length)
 
   for (let i = 0; i < files.length; i++) {
-    file = files[i]
-  }
-
-  for (let i = 0; i < files.length; i++) {
-    file = files[i]
+    let file = files[i]
     let image_file = "images/" + file;
     row.push(image_file);
     if ((i+1) % 10 == 0) {
