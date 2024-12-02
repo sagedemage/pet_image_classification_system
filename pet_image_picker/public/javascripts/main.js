@@ -3,6 +3,9 @@ console.log("Hello world!")
 let index = 0
 let length = 0
 
+window.addEventListener("keydown", previousEvent)
+window.addEventListener("keydown", nextEvent)
+
 async function getImages() {
     const url = "/api/images"
     try {
@@ -26,15 +29,27 @@ getImages()
 function previous() {
     if (index > 0) {
         index -= 1
+        getImages()
     }
-
-    getImages()
 }
 
 function next() {
     if (index < length) {
         index += 1
+        getImages()
     }
+}
 
-    getImages()
+function previousEvent(event) {
+    if (event.keyCode == 37) {
+        // Left arrow key
+        previous()
+    }
+}
+
+function nextEvent(event) {
+    if (event.keyCode == 39) {
+        // Right arrow key
+        next()
+    }
 }
