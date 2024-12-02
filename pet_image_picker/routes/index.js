@@ -12,10 +12,6 @@ router.get('/', function(req, res, next) {
 
   for (let i = 0; i < files.length; i++) {
     file = files[i]
-    let file_ext = file.slice(file.length - 4, file.length)
-    if (file_ext != ".jpg") {
-      files.splice(i, 1)
-    }
   }
 
   for (let i = 0; i < files.length; i++) {

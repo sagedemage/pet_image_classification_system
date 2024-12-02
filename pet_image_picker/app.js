@@ -42,6 +42,11 @@ app.use(function (err, req, res, next) {
 module.exports = app;
 
 let dest = "public/images/"
+
+if (!fs.existsSync(dest)) {
+  fs.mkdirSync(dest)
+}
+
 let image_files = fs.readdirSync(dest)
 
 if (image_files.length == 0) {
@@ -52,7 +57,6 @@ if (image_files.length == 0) {
 
   image_files.forEach(file => {
     let file_ext = file.slice(file.length - 4, file.length)
-    console.log(file)
     if (file_ext != ".jpg") {
       fs.rmSync(dest + file)
     }
