@@ -1,13 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to the pet image picker application.
-  p
-    img(id="pet_image" src="images/Abyssinian_1.jpg" width=500 height=400)
-    p(id="image_pos") 0 of N/A
-  button(onclick="previous()") Previous
-  button(onclick="next()") Next
+  div(id="image_viewer")
+    h1= title
+    p
+      img(id="pet_image" src="images/Abyssinian_1.jpg" width=500 height=400)
+      p(id="image_pos") 0 of N/A
+    button(onclick="previous()") Previous
+    button(onclick="next()") Next
 
   script(type="text/javascript" src="javascripts/main.js")
 
