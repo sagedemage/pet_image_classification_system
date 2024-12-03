@@ -43,7 +43,7 @@ def main():
         else "mps" if torch.backends.mps.is_available() else "cpu"
     )
 
-    picked_data_loader = load_image("picked_images/", img_size)
+    picked_data_loader = load_image("picked_image/", img_size)
 
     picked_data_inputs, _ = next(iter(picked_data_loader))
 

@@ -86,9 +86,9 @@ def main():
 
     def save_images():
         if picked_image_path != "":
-            dest_path_s = "picked_images/pets"
+            dest_path_s = "picked_image/pet"
             file = open(
-                "picked_images/pets/picked_pet_image.txt",
+                "picked_image/pet/picked_pet_image.txt",
                 "w",
                 encoding="utf-8",
             )
