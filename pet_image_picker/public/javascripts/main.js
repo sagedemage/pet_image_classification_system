@@ -1,5 +1,3 @@
-console.log("Hello world!")
-
 let index = 0
 let length = 0
 
