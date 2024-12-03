@@ -1,1 +1,0 @@
-dataset/oxford-iiit-pet/images/chihuahua_16.jpg

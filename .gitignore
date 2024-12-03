@@ -6,8 +6,8 @@ venv/
 runs/
 trained_models/*.pt
 dataset/
-picked_images/pets/*.jpg
-picked_images/pets/*.txt
+picked_image/pet/*.jpg
+picked_image/pet/*.txt
 
 # PyCharm Python IDE
 .idea/
