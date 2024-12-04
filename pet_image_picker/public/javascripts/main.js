@@ -43,8 +43,6 @@ function next() {
 }
 
 async function save_image() {
-    console.log(image_file)
-
     const url = "/api/save_image"
     try {
         const response = await fetch(url, {
@@ -59,11 +57,8 @@ async function save_image() {
         }
 
         const json = await response.json();
-        let image_files = json.image_files;
-        length = image_files.length-1
-        image_file = "public/" + image_files[index]
-        document.getElementById("pet_image").src = image_files[index]
-        document.getElementById("image_pos").innerText = `${index} of ${length}`
+        let msg = json.msg;
+        alert(msg)
     } catch (error) {
         console.error(error.message)
     }

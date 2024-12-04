@@ -35,6 +35,7 @@ router.post("/save_image", function(req, res, next) {
   let image_file_name = image_items[2]
   const data = "Image: " + image_file_name
   fs.writeFileSync(dest_dir + "picked_pet_image.txt", data, {flag: "w"})
+  res.send(JSON.stringify({msg: "Saved image"}))
 })
 
 module.exports = router;
