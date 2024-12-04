@@ -5,7 +5,7 @@ let image_file = ""
 window.addEventListener("keydown", previousEvent)
 window.addEventListener("keydown", nextEvent)
 
-async function getImages() {
+async function get_images() {
     const url = "/api/images"
     try {
         const response = await fetch(url)
@@ -25,20 +25,20 @@ async function getImages() {
 }
 
 window.onload = () => {
-    getImages()
+    get_images()
 }
 
 function previous() {
     if (index > 0) {
         index -= 1
-        getImages()
+        get_images()
     }
 }
 
 function next() {
     if (index < length) {
         index += 1
-        getImages()
+        get_images()
     }
 }
 
