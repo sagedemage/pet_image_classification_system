@@ -24,7 +24,9 @@ async function getImages() {
     }
 }
 
-getImages()
+window.onload = () => {
+    getImages()
+}
 
 function previous() {
     if (index > 0) {
