@@ -1,5 +1,4 @@
 const express = require('express');
-const fs = require("fs");
 let router = express.Router();
 
 /* GET home page. */

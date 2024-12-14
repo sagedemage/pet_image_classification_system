@@ -1,5 +1,5 @@
 const express = require('express');
-const fs = require("fs");
+const fs = require("node:fs");
 let router = express.Router();
 
 /* GET users listing. */
