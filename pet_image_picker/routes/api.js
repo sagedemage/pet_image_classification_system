@@ -11,7 +11,6 @@ router.get("/images", function(req, res, next) {
   let image_dir = "public/images"
   let files = fs.readdirSync(image_dir);
   let image_files = []
-  let row = []
   console.log(files.length)
 
   for (let i = 0; i < files.length; i++) {
