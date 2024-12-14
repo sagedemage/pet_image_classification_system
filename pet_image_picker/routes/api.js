@@ -29,11 +29,19 @@ router.post("/save_image", function(req, res, next) {
   const image_dest = dest_dir + "pet.jpg"
   res.setHeader("Content-Type", "application/json");
   let image_file = req.body.image_file
-  fs.cpSync(image_file, image_dest, { recursive: true })
+  fs.cp(image_file, image_dest, { recursive: true }, (err) => {
+    if (err) {
+      console.error(err);
+    }
+  })
   let image_items = image_file.split("/")
   let image_file_name = image_items[2]
   const data = "Image: " + image_file_name
-  fs.writeFileSync(dest_dir + "picked_pet_image.txt", data, {flag: "w"})
+  fs.writeFile(dest_dir + "picked_pet_image.txt", data, {flag: "w"}, (err) => {
+    if (err) {
+      console.error(err);
+    }
+  })
   res.send(JSON.stringify({msg: "Saved image"}))
 })
 
