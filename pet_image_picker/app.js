@@ -43,24 +43,32 @@ module.exports = app;
 
 let dest = "public/images/"
 
-if (!fs.existsSync(dest)) {
-  fs.mkdirSync(dest)
+try {
+  if (!fs.existsSync(dest)) {
+    fs.mkdirSync(dest)
+  }
+} catch(err) {
+  console.error(err);
 }
 
-let image_files = fs.readdirSync(dest)
-
-if (image_files.length == 0) {
-  let dataset_image_dir = "../dataset/oxford-iiit-pet/images"
-  fs.cpSync(dataset_image_dir, dest, { recursive: true })
-
+try {
   let image_files = fs.readdirSync(dest)
 
-  image_files.forEach(file => {
-    let file_ext = file.slice(file.length - 4, file.length)
-    if (file_ext != ".jpg") {
-      fs.rmSync(dest + file)
-    }
-  })
+  if (image_files.length == 0) {
+    let dataset_image_dir = "../dataset/oxford-iiit-pet/images"
+    fs.cpSync(dataset_image_dir, dest, { recursive: true })
+
+    let image_files = fs.readdirSync(dest)
+
+    image_files.forEach(file => {
+      let file_ext = file.slice(file.length - 4, file.length)
+      if (file_ext != ".jpg") {
+        fs.rmSync(dest + file)
+      }
+    })
+  }
+} catch(err) {
+  console.error(err);
 }
 
 console.log("Server at http://localhost:3000")
