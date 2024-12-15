@@ -9,19 +9,24 @@ router.get('/hello', function(req, res, next) {
 
 router.get("/images", function(req, res, next) {
   let image_dir = "public/images"
-  let files = fs.readdirSync(image_dir);
-  let image_files = []
-  console.log(files.length)
+  fs.readdir(image_dir, (err, files) => {
+    if (err) {
+      console.error(err);
+    }
+    else {
+      let image_files = []
 
-  for (let i = 0; i < files.length; i++) {
-    let file = files[i]
-    let image_file = "images/" + file;
-    image_files.push(image_file);
-  }
+      for (let i = 0; i < files.length; i++) {
+        let file = files[i]
+        let image_file = "images/" + file;
+        image_files.push(image_file);
+      }
 
-  let json_content = JSON.stringify({image_files: image_files})
-  res.setHeader("Content-Type", "application/json");
-  res.send(json_content)
+      let json_content = JSON.stringify({image_files: image_files})
+      res.setHeader("Content-Type", "application/json");
+      res.send(json_content)
+    }
+  });
 })
 
 router.post("/save_image", function(req, res, next) {
