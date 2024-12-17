@@ -1,6 +1,6 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
 }
 
 a {
@@ -15,3 +15,58 @@ a {
   margin-right: 15%;
   margin-left: 15%;
 }
+
+#nav {
+  background-color: mediumseagreen;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+#nav > a {
+  color: black;
+  text-decoration: none;
+  padding-right: 10px;
+}
+
+#keybinding-info {
+  text-align: center;
+  border: 1px solid black;
+  width: 25%;
+  padding: 10px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 33%;
+  padding: 5px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+button {
+  border-width: 0px;
+  border-radius: 5px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: gray;
+  color: white;
+}
+
+#save-button {
+  background-color: green;
+}
+
