@@ -47,7 +47,7 @@ router.post("/save_image", function(req, res, next) {
       console.error(err);
     }
   })
-  res.send(JSON.stringify({msg: "Saved image"}))
+  res.send(JSON.stringify({msg: "Saved the pet image"}))
 })
 
 module.exports = router;
