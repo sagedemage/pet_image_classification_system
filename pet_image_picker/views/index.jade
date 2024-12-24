@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  div(id="image_viewer")
+    h1= title
+    p
+      img(id="pet_image" src="images/Abyssinian_1.jpg" width=500 height=400)
+      p(id="image_pos") 0 of N/A
+    div(id="buttons" class="row")
+      div(class="column")
+        button(onclick="previous()") Previous
+      div(class="column")
+        button(id="save-button" onclick="save_image()") Save image
+      div(class="column")
+        button(onclick="next()") Next
+    p(id="keybinding-info")
+      | Left arrow: move to the previous image
+      br
+      | Right arrow: move to the next image
+
+  script(type="text/javascript" src="javascripts/main.js")
+
+

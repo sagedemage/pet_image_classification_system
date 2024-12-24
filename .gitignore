@@ -6,8 +6,8 @@ venv/
 runs/
 trained_models/*.pt
 dataset/
-picked_images/pets/*.jpg
-picked_images/pets/*.txt
+picked_image/pet/*.jpg
+picked_image/pet/*.txt
 
 # PyCharm Python IDE
 .idea/
@@ -20,3 +20,9 @@ picked_images/pets/*.txt
 
 # Cache files
 *.~*
+
+# Node
+pet_image_picker/node_modules
+
+# Express.js
+pet_image_picker/public/images/*.jpg

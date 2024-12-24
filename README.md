@@ -2,7 +2,7 @@
 Pet image classification system written in Python with PyTorch.
 
 ![Pet Image Classification System](./screenshots/pet_image_classification_system.webp)
-![Pick Pet Images GUI Program](./screenshots/pick_pet_image_gui_program.webp)
+![Pet Image Picker Web Application](./screenshots/pet_image_picker_web_app.webp)
 
 ## Source of the Oxford-IIIT Pet Dataset
 - [The Oxford-IIIT Pet Dataset](https://www.robots.ox.ac.uk/~vgg/data/pets/)
