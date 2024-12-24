@@ -10,8 +10,4 @@ router.get("/about", function(req, res, next) {
   res.render('about', { title: 'About' });
 })
 
-router.get("/view-image", function(req, res, next) {
-  res.render('view_image', { title: 'View an Image' });
-})
-
 module.exports = router;
