@@ -2,11 +2,6 @@ const express = require('express');
 const fs = require("node:fs");
 let router = express.Router();
 
-/* GET users listing. */
-router.get('/hello', function(req, res, next) {
-  res.send('Hello world!');
-});
-
 router.get("/images", function(req, res, next) {
   let image_dir = "public/images"
   fs.readdir(image_dir, (err, files) => {
