@@ -42,8 +42,9 @@ function next() {
   }
 }
 
+
+// eslint-disable-next-line no-unused-vars
 async function saveImage() {
-  // eslint-disable-line no-unused-vars
   const saveImage = confirm('Do you want to save the pet image?')
   if (saveImage) {
     const url = '/api/save_image'
