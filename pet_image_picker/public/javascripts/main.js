@@ -42,7 +42,6 @@ function next() {
   }
 }
 
-
 // eslint-disable-next-line no-unused-vars
 async function saveImage() {
   const saveImage = confirm('Do you want to save the pet image?')
