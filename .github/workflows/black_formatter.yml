@@ -1,4 +1,4 @@
-name: Format Check Codebase
+name: Black Formatter
 
 on:
   pull_request:

@@ -1,4 +1,4 @@
-name: Lint Codebase
+name: Pylint
 
 on:
   pull_request:
