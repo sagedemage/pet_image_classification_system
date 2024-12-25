@@ -1,16 +1,16 @@
-import globals from "globals";
-import js from "@eslint/js";
-
+import globals from 'globals'
+import js from '@eslint/js'
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
-    files: ["**/*.js"],
+    files: ['**/*.js'],
     languageOptions: {
-      sourceType: "commonjs", globals: { ...globals.node, ...globals.browser },
+      sourceType: 'commonjs',
+      globals: { ...globals.node, ...globals.browser },
     },
     rules: {
-      'eqeqeq': 'error',
+      eqeqeq: 'error',
 
       /*
         Google Style Guide
@@ -19,7 +19,7 @@ export default [
       */
 
       // Best Practices
-      'curly': ['error', 'multi-line'],
+      curly: ['error', 'multi-line'],
       'guard-for-in': 'error',
       'no-caller': 'error',
       'no-extend-native': 'error',
@@ -30,21 +30,24 @@ export default [
       'prefer-promise-reject-errors': 'error',
 
       // Stylistic Issues
-      'camelcase': ['error', { properties: 'never' }],
+      camelcase: ['error', { properties: 'never' }],
       'no-array-constructor': 'error',
       'no-new-object': 'error',
-      'one-var': ['error', {
-        var: 'never',
-        let: 'never',
-        const: 'never',
-      }],
+      'one-var': [
+        'error',
+        {
+          var: 'never',
+          let: 'never',
+          const: 'never',
+        },
+      ],
 
       // ECMAScript 6
       'no-var': 'error',
       'prefer-const': ['error', { destructuring: 'all' }],
       'prefer-rest-params': 'error',
       'prefer-spread': 'error',
-    }
+    },
   },
   js.configs.recommended,
-];
+]
