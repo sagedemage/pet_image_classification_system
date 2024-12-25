@@ -1,10 +1,14 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font:
+    14px 'Lucida Grande',
+    Helvetica,
+    Arial,
+    sans-serif;
   margin: 0;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
 
 #image_viewer {
@@ -50,7 +54,7 @@ a {
 }
 
 .row:after {
-  content: "";
+  content: '';
   display: table;
   clear: both;
 }
@@ -69,4 +73,3 @@ button {
 #save-button {
   background-color: green;
 }
-
