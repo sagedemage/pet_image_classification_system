@@ -5,10 +5,10 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const fs = require("node:fs");
 
-let indexRouter = require('./routes/index');
-let apiRouter = require('./routes/api');
+const indexRouter = require('./routes/index');
+const apiRouter = require('./routes/api');
 
-let app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,7 +29,7 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -41,7 +41,7 @@ app.use(function (err, req, res, next) {
 
 module.exports = app;
 
-let dest = "public/images/"
+const dest = "public/images/"
 
 try {
   if (!fs.existsSync(dest)) {
@@ -52,17 +52,17 @@ try {
 }
 
 try {
-  let image_files = fs.readdirSync(dest)
+  let imageFiles = fs.readdirSync(dest)
 
-  if (image_files.length == 0) {
-    let dataset_image_dir = "../dataset/oxford-iiit-pet/images"
-    fs.cpSync(dataset_image_dir, dest, { recursive: true })
+  if (imageFiles.length === 0) {
+    const datasetImageDir = "../dataset/oxford-iiit-pet/images"
+    fs.cpSync(datasetImageDir, dest, { recursive: true })
 
-    let image_files = fs.readdirSync(dest)
+    imageFiles = fs.readdirSync(dest)
 
-    image_files.forEach(file => {
-      let file_ext = file.slice(file.length - 4, file.length)
-      if (file_ext != ".jpg") {
+    imageFiles.forEach(file => {
+      const fileExt = file.slice(file.length - 4, file.length)
+      if (fileExt !== ".jpg") {
         fs.rmSync(dest + file)
       }
     })

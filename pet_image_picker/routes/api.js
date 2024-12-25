@@ -1,43 +1,43 @@
 const express = require('express');
 const fs = require("node:fs");
-let router = express.Router();
+const router = express.Router();
 
-router.get("/images", function(req, res, next) {
-  let image_dir = "public/images"
-  fs.readdir(image_dir, (err, files) => {
+router.get("/images", function(req, res) {
+  const imageDir = "public/images"
+  fs.readdir(imageDir, (err, files) => {
     if (err) {
       console.error(err);
     }
     else {
-      let image_files = []
+      const imageFiles = []
 
       for (let i = 0; i < files.length; i++) {
-        let file = files[i]
-        let image_file = "images/" + file;
-        image_files.push(image_file);
+        const file = files[i]
+        const imageFile = "images/" + file;
+        imageFiles.push(imageFile);
       }
 
-      let json_content = JSON.stringify({image_files: image_files})
+      const jsonContent = JSON.stringify({image_files: imageFiles})
       res.setHeader("Content-Type", "application/json");
-      res.send(json_content)
+      res.send(jsonContent)
     }
   });
 })
 
-router.post("/save_image", function(req, res, next) {
-  const dest_dir = "../picked_image/pet/"
-  const image_dest = dest_dir + "pet.jpg"
+router.post("/save_image", function(req, res) {
+  const destDir = "../picked_image/pet/"
+  const imageDest = destDir + "pet.jpg"
   res.setHeader("Content-Type", "application/json");
-  let image_file = req.body.image_file
-  fs.cp(image_file, image_dest, { recursive: true }, (err) => {
+  const imageFile = req.body.image_file
+  fs.cp(imageFile, imageDest, { recursive: true }, (err) => {
     if (err) {
       console.error(err);
     }
   })
-  let image_items = image_file.split("/")
-  let image_file_name = image_items[2]
-  const data = "Image: " + image_file_name
-  fs.writeFile(dest_dir + "picked_pet_image.txt", data, {flag: "w"}, (err) => {
+  const imageItems = imageFile.split("/")
+  const imageFileName = imageItems[2]
+  const data = "Image: " + imageFileName
+  fs.writeFile(destDir + "picked_pet_image.txt", data, {flag: "w"}, (err) => {
     if (err) {
       console.error(err);
     }

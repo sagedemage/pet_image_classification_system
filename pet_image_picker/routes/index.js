@@ -1,12 +1,12 @@
 const express = require('express');
-let router = express.Router();
+const router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   res.render('index', { title: 'Pet Image Picker' });
 });
 
-router.get("/about", function(req, res, next) {
+router.get("/about", function(req, res) {
   res.render('about', { title: 'About' });
 })
 
